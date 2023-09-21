@@ -1,0 +1,23 @@
+<h1>Hello Angular {{title}}
+</h1>
+
+
+<app-name></app-name>
+<app-login></app-login>
+
+<!-- <button (click)="getData()">Click ME</button> -->
+<!-- <button (click)="getData2('Akash')">Click ME for Custom Data</button> -->
+
+<input type="text" #box (keyup)="getData(box.value)" placeholder="Enter here keyup"/>
+<br/>
+<br/>
+<input type="text" #box1 (keydown)="getData(box1.value)" placeholder="Enter here keydown"/>
+<br/>
+<br/>
+<input type="text" #box2 (blur)="getData(box2.value)" placeholder="Enter here blur"/>
+
+
+
+<!-- 
+mouseover
+mouseleave -->
