@@ -21,3 +21,9 @@
 <!-- 
 mouseover
 mouseleave -->
+
+
+
+<input type="text" #box (keyup)="getData(box.value)" placeholder="Enter here keyup"/>
+
+<p>Box value : {{getValue}}</p>
