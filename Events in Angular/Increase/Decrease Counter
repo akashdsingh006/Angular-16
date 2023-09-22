@@ -1,0 +1,38 @@
+<h1>{{value}}</h1>
+<!-- <button (click)="increaseVal()">Increase</button>
+<button (click)="decreaseVal()">Decrease</button> -->
+<button (click)="operate('inc')">++</button>
+<button (click)="operate('dec')">--</button>
+
+
+
+Other File:
+-------------------
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  value=0
+  increaseVal()
+  {
+    this.value++
+  }
+
+  decreaseVal()
+  {
+    this.value--
+  }
+
+  operate(data:any)
+  {
+    if(data==="inc")
+    this.value++
+  else if(data==="dec")
+    this.value--
+  }
+}
