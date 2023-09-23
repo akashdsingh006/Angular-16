@@ -1,0 +1,19 @@
+<ul *ngFor="let user of userDetails">
+    <li>{{user.name}}</li>
+    <li>{{user.email}}</li>
+    <li>{{user.phone}}</li>
+    <ul *ngFor="let account of user.socialAccounts">
+        <li>{{account}}</li>
+    </ul>
+</ul>
+
+
+
+
+
+Data-------------------
+______________________________________________________________________________________________________________________________
+ userDetails=[
+{name:'Akash',email:'akash@tes.com',phone:'777',socialAccounts:['gmail','linkedin','insta']},  {name:'Rahul',email:'Rahul@tes.com',phone:'888',socialAccounts:['whatsapp','facebook','insta']},
+{name:'Amit',email:'amit@tes.com',phone:'731',socialAccounts:['yahoo','linkedin']},  {name:'Kevin',email:'kevin@tes.com',phone:'127',socialAccounts:['gmail','tinder','boo']}
+]
