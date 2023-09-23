@@ -4,6 +4,7 @@
     <h1 *ngSwitchCase="'blue'">Blue Color</h1>
     <h1 *ngSwitchCase="'green'">Green Color</h1>
     <h1 *ngSwitchCase="'yellow'">Yellow Color</h1>
+    <h1 *ngSwitchDefault="">Unknown Color</h1>
 </div>
 
 
