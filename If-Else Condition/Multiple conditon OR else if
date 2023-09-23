@@ -1,0 +1,9 @@
+<ng-template [ngIf]="color=='red'">
+    <h1 style="color:red">Red</h1>
+</ng-template>
+<ng-template [ngIf]="color=='blue'">
+    <h1 style="color:blue">Blue</h1>
+</ng-template>
+<ng-template [ngIf]="color=='green'">
+    <h1 style="color:green">Green</h1>
+</ng-template>
