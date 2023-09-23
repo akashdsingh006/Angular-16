@@ -1,0 +1,26 @@
+
+<div [ngSwitch]="color">
+    <h1 *ngSwitchCase="'red'">Red Color</h1>
+    <h1 *ngSwitchCase="'blue'">Blue Color</h1>
+    <h1 *ngSwitchCase="'green'">Green Color</h1>
+    <h1 *ngSwitchCase="'yellow'">Yellow Color</h1>
+</div>
+
+
+---------------------------------------------------------------------------------------------
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-name',
+  templateUrl: './name.component.html',
+  styles: [
+    `.custom{
+      background-color : green;
+    }`
+  ]
+})
+export class NameComponent {
+  my_data ="Hello Sir";
+
+  color='blue'
+}
