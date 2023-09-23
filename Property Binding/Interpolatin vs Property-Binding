@@ -1,0 +1,8 @@
+<!-- Interpolation-->
+<input type="text" name="user-name" value="{{data}}" disabled="{{disable}}">
+<br>
+<br>
+
+
+<!-- Property Binding-->
+<input type="text" name="user-name" [value]="data" [disabled]="disable">
