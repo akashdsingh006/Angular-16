@@ -1,0 +1,10 @@
+<h1>Hello Angular {{ title }}</h1>
+
+
+<h1>{{ value }}</h1>
+<!-- <button (click)="increaseVal()">Increase</button>
+<button (click)="decreaseVal()">Decrease</button> -->
+<button (click)="operate('inc')">++</button>
+<button (click)="operate('dec')">--</button>
+
+<app-child (updateDataEvent)="updateData($event)"></app-child>
