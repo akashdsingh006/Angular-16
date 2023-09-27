@@ -1,0 +1,40 @@
+<h1>Hello Angular {{ title }}</h1>
+
+
+<!-- <h1>{{ value }}</h1> -->
+<!-- <button (click)="increaseVal()">Increase</button>
+<button (click)="decreaseVal()">Decrease</button> -->
+<!-- <button (click)="operate('inc')">++</button>
+<button (click)="operate('dec')">--</button> -->
+<!-- 
+<app-child (updateDataEvent)="updateData($event)"></app-child> -->
+
+<!-- <input type="text" [(ngModel)]="input_value"/>
+<h2>{{input_value}}</h2> -->
+<!-- 
+Basic Pipes
+<h1>{{title | uppercase}}</h1>
+<h1>{{title | lowercase}}</h1>
+
+<h1>{{title | slice:3:7 | uppercase}}</h1>
+<h1>{{date | date:'fullDate'}}</h1>
+
+<!-- Advance Pipes -->
+<!-- <h1>{{2000.330000 | number:'10.3-7'}}</h1>
+<h1>{{20 | currency:'INR'}}</h1> --> 
+
+<!-- <h1>{{20 | usdInr :75}}</h1> -->
+
+<!-- <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+    <input type="text" placeholder="Enter name"  formControlName="username"/>
+    <br>
+    <span *ngIf="username && username.invalid && username.touched">This field is required</span>
+    <br>
+    <input type="password" placeholder="Enter password" name="password" formControlName="password"/>
+    <br>
+    <span *ngIf="password && password.invalid">This field is required</span>
+    <button [disabled]="loginForm.invalid">Login</button>
+</form> -->
+
+<h1>{{title}}</h1>
+<h1 appRedEl>{{title}}</h1>
