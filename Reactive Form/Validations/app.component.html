@@ -1,0 +1,10 @@
+<form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+    <input type="text" placeholder="Enter name"  formControlName="username"/>
+    <br>
+    <span *ngIf="username && username.invalid && username.touched">This field is required</span>
+    <br>
+    <input type="password" placeholder="Enter password" name="password" formControlName="password"/>
+    <br>
+    <span *ngIf="password && password.invalid">This field is required</span>
+    <button [disabled]="loginForm.invalid">Login</button>
+</form>
