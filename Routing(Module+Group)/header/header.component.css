@@ -1,0 +1,26 @@
+nav {
+    background-color: #333; /* Background color for the navbar */
+    color: #fff; /* Text color for the navbar links */
+}
+
+nav ul {
+    list-style-type: none; /* Remove list bullets */
+    text-align: center; /* Center-align the list items */
+}
+
+nav li {
+    display: inline; /* Display list items horizontally */
+    margin-right: 20px; /* Add spacing between list items */
+}
+
+nav a {
+    text-decoration: none; /* Remove underlines from links */
+    color: #fff; /* Text color for the links */
+    font-weight: bold; /* Bold text for links */
+    font-size: 16px; /* Font size for links */
+}
+
+/* Style the navigation links on hover */
+nav a:hover {
+    color: #ff4500; /* Change text color on hover (e.g., orange) */
+}
