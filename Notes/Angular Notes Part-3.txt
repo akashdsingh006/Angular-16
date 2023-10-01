@@ -1,0 +1,148 @@
+Angular Routing :
+--------------------------------
+Whenever we are creating the project that time, we'll get the option to include routing in it.
+A file will be generated as app-routing.module.ts
+
+Dynamic Routing:
+-----------------------------
+<h1>This is the home page</h1>
+<a routerLink="user">User</a>
+<br>
+<a routerLink="about">About</a>
+
+<br>
+<a routerLink="about/20">Atul</a>
+<br>
+<a routerLink="about/30">Aman</a>
+<br>
+<a routerLink="about/40">Golu</a>
+
+<router-outlet></router-outlet>
+
+
+** Dynamic Routing is applied here on AboutComponent. 
+
+import { Component,OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-about',
+  templateUrl: './about.component.html',
+  styleUrls: ['./about.component.css']
+})
+export class AboutComponent implements OnInit {
+  constructor(private route :ActivatedRoute){
+
+  }
+  ngOnInit(): void {
+      console.log('user id is', this.route.snapshot.paramMap.get('id'))
+  }
+}
+_____________________________________
+404 page :
+---------------------
+We use wildcard routing to create error pages or such pages which doesnot exist.
+
+{
+	component: ErrorPageComponent,
+	path: '**'
+}
+
+__________________________________________
+
+
+Services:
+---------------------
+A service is typically a class with a narrow, well-defined purpose. It should do something specific and do it well.
+Services are good for tasks such as fetching data from the server, validating user input, or logging directly to the console.
+
+
+
+
+GET API data :
+----------------------------------------------------
+Services:
+
+import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http'
+@Injectable({
+  providedIn: 'root'
+})
+export class UserdataService {
+
+  url='https://gorest.co.in/public/v2/users'
+  constructor(private http:HttpClient) { }
+  userData()
+  {
+    return (this.http.get(this.url))
+  }
+}
+
+
+app.module.ts
+-----------------------
+import {HttpClientModule} from '@angular/common/http'
+
+
+
+Now using api data in any component:
+---------------------------------------------------------
+import { Component } from '@angular/core';
+import {UserdataService} from './services/userdata.service'
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'routing-blog';
+  data:any;
+  constructor(private userdata:UserdataService)
+  {
+    userdata.userData().subscribe((users)=>{
+      console.log('users',users)
+      this.data=users
+    })
+  }
+}
+
+----------------------------------------------------------
+
+Model in Typescript 
+-----------------------------------
+Model is simply a software representation and encapsulation of a real world subject, or a "thing". It can be used to describe a physical object, an event, or even an internal process, depending on the use case.
+
+// user.model.ts
+
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+// user.service.ts
+
+import { Injectable } from '@angular/core';
+import { User } from './user.model';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UserService {
+  getUser(): User {
+    // Simulate fetching user data from an API or elsewhere
+    const user: User = {
+      id: 1,
+      name: 'John Doe',
+      email: 'john@example.com',
+    };
+    return user;
+  }
+}
+
+_____________________________________
+
+Lazy Loading
+-------------------------
+Lazy loading in Angular allows you to load modules on-demand, improving initial loading speed. Create feature modules, set up lazy routes with `loadChildren`, and Angular loads the module when the associated route is accessed.
+

@@ -1,0 +1,173 @@
+Typescript :
+------------------------------
+Whenever a variable is created, the intention is to assign some value to that variable but what type of value can be assigned to that variable is dependent upon the datatype of that Variable.
+
+Built-in Datatypes: 
+let a: null = null;
+
+let b: number = 123;
+
+let c: number = 123.456;
+
+let d: string = ‘Geeks’;
+
+let e: undefined = undefined;
+
+let f: boolean = true;
+
+let g: number = 0b111001; // Binary
+
+let h: number = 0o436; // Octal
+
+let i: number = 0xadf0d; // Hexa-Decimal
+
+
+User-defined Data Types:
+-----------------------------------------
+Apart from built-in data types, user can also define its own data type. User-defined types include Enumerations (enums), classes, interfaces, arrays, and tuple.
+
+let a: any = null;
+let b: any =123;
+let c: any = 123.456;
+
+
+
+Pipes in Angular :
+----------------------------------
+In Typescript, pipe(|) is referred to as a union type or “Or”. it is also called union type in typescript. A value that can be any of numerous kinds is described by a union type. Each type is separated by a pipe (|).
+
+<h1>{{title | uppercase}}</h1>
+<h1>{{title | lowercase}}</h1>
+
+
+<!-- Basic Pipes -->
+<h1>{{title | uppercase}}</h1>
+<h1>{{title | lowercase}}</h1>
+
+<h1>{{title | slice:3:7 | uppercase}}</h1>
+<h1>{{date | date:'fullDate'}}</h1>
+
+<!-- Advance Pipes -->
+<h1>{{2000.330000 | number:'10.3-7'}}</h1>
+<h1>{{20 | currency:'INR'}}</h1>
+
+Creating custom pipes:
+-----------------------------------
+Cmd-> ng g p pipes/usdInr
+
+<h1>{{20 | usdInr :75}}</h1>
+
+usd-inr.pipe.ts
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'usdInr'
+})
+export class UsdInrPipe implements PipeTransform {
+
+  transform(value: number, ...args: number[]): unknown {
+    const[x]=args
+    return value*x;
+  }
+
+}
+
+
+ _____________________________________
+
+Forms in Angular:
+-------------------------------
+1. Template-driven form : Mostly work done in the component template.
+2. Reactive form : Mostly work done in component class.
+
+: Refer to github :
+
+_____________________________________
+Reactive Form Validators :
+-------------------------------------------------------
+-> Import Validators from @angular/forms in the .ts file
+
+-> Create getters for any property
+
+loginForm =new FormGroup({
+    username :new FormControl('',[Validators.required]),
+    password :new FormControl('')
+  })
+get user()
+{
+	return this.loginForm.get('username')
+}
+
+
+Form:
+____________
+<form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+    <input type="text" placeholder="Enter name"  formControlName="username"/>
+    <br>
+    <span *ngIf="username && username.invalid && username.touched">This field is required</span>
+    <br>
+    <input type="password" placeholder="Enter password" name="password" formControlName="password"/>
+    <br>
+    <span *ngIf="password && password.invalid">This field is required</span>
+    <button [disabled]="loginForm.invalid">Login</button>
+</form>
+
+
+app.component.ts
+----------------------------------
+loginForm =new FormGroup({
+    username :new FormControl('',[Validators.required,Validators.email]),
+    password :new FormControl('',[Validators.required,Validators.minLength(3)])
+  })
+
+  loginUser()
+  {
+    console.log(this.loginForm.value)
+  }
+
+  get username()
+  {
+    return this.loginForm.get('username')
+  }
+  get password()
+  {
+    return this.loginForm.get('password')
+  }
+}
+
+_____________________________________
+
+Directives:
+-------------------
+
+Directives are meant to be a function that executes when found in the DOM by the Angular compiler to extend the power of the HTML with new syntax.
+Directives have a name and can be predefined or custom-defined so that they can be called anything.
+Depending on the predefined directive, its use is determined – attribute, comment, element, or class.
+
+Example: ngIf, ngFor, ngSwitch -Built-in directives
+
+To create custom directive : ng g directive <name>
+
+
+
+<h1>{{title}}</h1>
+<h1 appRedEl>{{title}}</h1>
+
+red-el.app.directive.ts
+-----------------------------------
+import { Directive, ElementRef } from '@angular/core';
+
+@Directive({
+  selector: '[appRedEl]'
+})
+export class RedElDirective {
+
+  constructor(el:ElementRef) 
+  {
+    el.nativeElement.style.color='red'
+   }
+
+}
+
+
+

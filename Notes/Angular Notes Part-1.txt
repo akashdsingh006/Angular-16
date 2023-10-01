@@ -1,0 +1,290 @@
+Angular
+----------------------
+
+1. Angular is frontend development framework.
+2. For developing Single Page Application.
+3. Developed by Google.
+4. MVC Framework
+5. Open Source
+6. Use npm and CLI
+
+
+Angular vs Angular.js
+-------------------------------------------
+1. Angular js is oldest version not in use.
+2. Angular is re-written version, structure, and upgraded framework
+
+
+Files and Folder Structure
+----------------------------------------------
+package.json
+node_modules
+src folder
+	app
+	assets
+	environments
+	index.html
+	main.js
+	style.css
+package-lock.joson :- keeps detailed information of the dependencies used in the project.
+
+angular.json :- configuration of project (which page will load first)
+
+
+Interpolation
+---------------------------
+Interpolation in the context of Angular typically refers to a mechanism used to bind data from your component to your template. It allows you to display dynamic data within your Angular templates. Angular uses curly braces {{}} for interpolation.
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-example',
+  template: `
+    <p>{{ message }}</p>
+  `,
+})
+export class ExampleComponent {
+  message = 'Hello, Angular!';
+}
+
+
+<p>{{ 2 + 2 }}</p> <!-- This will display 4 -->
+<p>{{ firstName + ' ' + lastName }}</p> <!-- Assuming you have firstName and lastName properties in your component -->
+
+
+Angular CLI & Important Commands
+----------------------------------------------------------
+1. ng generate component name :- generates the component in app folder with its subfolder
+
+2.ng generate module name :- module is a big package which can have many components in it.
+Example :- ng generate module user-auth
+			Inside user-auth we need to create components then we can use -> ng generate component user-auth/login
+
+3. ng generate class dummy : used for creating classes. (it has two files - dummy.spec.ts is mainly used for testing and other file for writing the functions.)
+
+4.ng generate interface name : for creating interface
+
+
+Component
+---------------------------------
+A component in Angular is a self-contained, reusable building block for creating user interfaces, consisting of a TypeScript class, an HTML template, and optional CSS styles.
+
+Component with inline style & template:
+------------------------------------------------------------
+This is used for adding inline style or template inside the <any name>.component.ts file where we can just perform the operations related to style and etc. In this case .css file is not generated on ruuning ---->ng generate component <any-name> --inline-style
+
+On running --->ng generate component <any-name> --inline-template , we won't get the component.html file
+
+
+
+Module
+--------------------------
+Module is complete feature in itself.
+Example- It can have Comp1,Comp2,Comp3,Services,Pips...
+OR
+User-Auth : Login, Register, ForgetPassword, API call, Helpers
+
+
+
+Functions in Angular
+------------------------------------------------
+<button (click)="getData2('Akash')">Click ME for Custom Data</button>
+
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+
+  getData2(name:any)
+  {
+    alert(name)
+  }
+}
+
+Note : Before Angular 12 if we dont provide name:any it will work as the strict mode is false by default . But that was changed in Angular 12 and after it.
+
+
+Get Input Box Value and Display
+----------------------------------------------------
+<input type="text" #box (keyup)="getData(box.value)" placeholder="Enter here keyup"/>
+
+<p>{{getValue}}</p>
+
+
+app.component.ts
+export class AppComponent {
+  title = 'blog';
+  getValue=''
+  getData(data:any){
+    console.log(data);
+    this.getValue=data
+  }
+}
+
+
+
+Property Binding
+-------------------------------------------------
+Property binding in Angular is a mechanism for dynamically setting HTML element properties based on values from a component, enabling the synchronization of component data with the user interface.
+
+Example : 
+<input type="text" name="user-name" [value]="data" [disabled]="disable">
+
+
+
+If-Else condition
+-----------------------------------
+
+<h1 *ngIf="show; then ifBlock else elseBlock"></h1>
+
+<ng-template #ifBlock>
+    <h1>If condition</h1>
+</ng-template>
+
+<ng-template #elseBlock>
+    <h1>Else condition</h1>
+</ng-template>
+
+
+-------->show=true<-------------
+
+
+
+Multiple condition / else if
+------------------------------------------------
+<ng-template [ngIf]="color=='red'">
+    <h1 style="color:red">Red</h1>
+</ng-template>
+<ng-template [ngIf]="color=='blue'">
+    <h1 style="color:blue">Blue</h1>
+</ng-template>
+<ng-template [ngIf]="color=='green'">
+    <h1 style="color:green">Green</h1>
+</ng-template>
+
+
+
+Switch Case
+----------------------------------------
+
+<div [ngSwitch]="color">
+    <h1 *ngSwitchCase="'red'">Red Color</h1>
+    <h1 *ngSwitchCase="'blue'">Blue Color</h1>
+    <h1 *ngSwitchCase="'green'">Green Color</h1>
+    <h1 *ngSwitchCase="'yellow'">Yellow Color</h1>
+    <h1 *ngSwitchDefault>Unknown Color</h1>
+</div>
+
+
+For loop:
+-----------------------
+<h1 *ngFor="let items of userDetails">{{items.name}} --- {{items.email}}</h1>
+
+
+Nested For-loop:
+---------------------------------------------
+<ul *ngFor="let user of userDetails">
+    <li>{{user.name}}</li>
+    <li>{{user.email}}</li>
+    <li>{{user.phone}}</li>
+    <ul *ngFor="let account of user.socialAccounts">
+        <li>{{account}}</li>
+    </ul>
+</ul>
+
+
+ userDetails=[
+{name:'Akash',email:'akash@tes.com',phone:'777',socialAccounts:['gmail','linkedin','insta']},  {name:'Rahul',email:'Rahul@tes.com',phone:'888',socialAccounts:['whatsapp','facebook','insta']},
+{name:'Amit',email:'amit@tes.com',phone:'731',socialAccounts:['yahoo','linkedin']},  {name:'Kevin',email:'kevin@tes.com',phone:'127',socialAccounts:['gmail','tinder','boo']}
+]
+
+_____________________________________
+Style Binding:
+--------------------------
+
+
+<h1 [style.color]="color" [style.backgroundColor]="bgColor">{{data}}</h1>
+<button (click)="updateColor()">Update Color</button>
+
+
+Data
+---------
+ data='Hi This is Akash'
+  color='red'
+  bgColor='yellow'
+  updateColor()
+  {
+    this.color='lightgreen'
+    this.bgColor='black'
+  }
+
+_____________________________________
+
+
+Basic Form in Angular
+---------------------------------------
+import {FormsModule} from '@angular/forms'  in app.module.ts
+
+<form #basicForm="ngForm" (ngSubmit)="getFormData(basicForm.value)" >
+
+    <input type="text"ngModel placeholder="Enter name" name="username"/>
+    <br/><br/>
+    <input type="email" ngModel placeholder="Enter email" name="email"/>
+    <br/><br/>
+    <input type="password" ngModel placeholder="Enter password" name="password"/>
+    <button >Register</button>
+</form>
+
+
+form.component.ts
+---------------------------
+import { Component } from '@angular/core';
+import {NgForm} from '@angular/forms'
+@Component({
+  selector: 'app-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.css']
+})
+export class FormComponent {
+  getFormData(data:NgForm)
+  {
+    console.warn(data)
+  }
+}
+
+
+_____________________________________
+
+Send Data from Child to Parent:
+----------------------------------------------
+1. Use child component in Parent Component.
+2.Send function from parent component.
+3.Call function in child component
+4.Get data in parent component
+
+_____________________________________
+
+Two way binding:
+-------------------------------
+It's an advanced technique where model value and view simultaneously update if any changes occur in any of them. These updates are seamless and blazing fast.
+
+HTML <---> View
+
+ Two-way binding syntax is a combination of ()(event binding) wrapped with [](property binding).
+    You can remember the syntax by saying Banana-in-the-box [()]
+    The built-in directive for two-way binding is [(ngModel)]
+
+<input type="text" [(ngModel)]="testValue" />
+
+Note : import {FormsModule} from '@angular/forms';
+
+_____________________________________
+
+Template Reference Variable:
+-----------------------------------------------------
+Template variables help you use data from one part of a template in another part of the template. Use template variables to perform tasks such as respond to user input or finely tune your application's forms.
+
+
+It is of type :- HTMLInputElement
